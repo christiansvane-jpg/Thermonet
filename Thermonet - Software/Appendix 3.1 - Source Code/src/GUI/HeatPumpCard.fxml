@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root type="VBox"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         prefWidth="240"
+         spacing="10"
+         style="-fx-background-color: #313244; -fx-background-radius: 12;">
+  <padding>
+    <Insets top="16" right="16" bottom="16" left="16"/>
+  </padding>
+
+  <children>
+    <HBox alignment="CENTER_LEFT" spacing="8">
+      <children>
+        <Label fx:id="idLabel" textFill="#cdd6f4">
+          <font>
+            <Font name="System Bold" size="15"/>
+          </font>
+        </Label>
+
+        <Region>
+          <HBox.hgrow>
+            <Priority fx:constant="ALWAYS"/>
+          </HBox.hgrow>
+        </Region>
+
+        <Label fx:id="statusIdleLabel"
+               text="IDLE"
+               style="-fx-background-color: #45475a; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+          <padding>
+            <Insets top="3" right="8" bottom="3" left="8"/>
+          </padding>
+          <font>
+            <Font name="System Bold" size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="statusHeatingLabel"
+               text="HEATING"
+               visible="false"
+               managed="false"
+               style="-fx-background-color: #a6e3a1; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+          <padding>
+            <Insets top="3" right="8" bottom="3" left="8"/>
+          </padding>
+          <font>
+            <Font name="System Bold" size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="statusStoringLabel"
+               text="STORING"
+               visible="false"
+               managed="false"
+               style="-fx-background-color: #cba6f7; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+          <padding>
+            <Insets top="3" right="8" bottom="3" left="8"/>
+          </padding>
+          <font>
+            <Font name="System Bold" size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="statusStoppedLabel"
+               text="STOPPED"
+               visible="false"
+               managed="false"
+               style="-fx-background-color: #f38ba8; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+          <padding>
+            <Insets top="3" right="8" bottom="3" left="8"/>
+          </padding>
+          <font>
+            <Font name="System Bold" size="11"/>
+          </font>
+        </Label>
+
+        <Button onAction="#disconnectClicked"
+                text="Disconnect"
+                style="-fx-background-color: #f38ba8; -fx-text-fill: #1e1e2e; -fx-background-radius: 5; -fx-padding: 3 7 3 7;">
+          <font>
+            <Font name="System Bold" size="10"/>
+          </font>
+        </Button>
+      </children>
+    </HBox>
+
+    <Region prefHeight="1" style="-fx-background-color: #45475a;"/>
+
+    <VBox spacing="2">
+      <children>
+        <Label text="Indoor Temperature" textFill="#a6adc8">
+          <font>
+            <Font size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="indoorTempLabel" text="- C" textFill="#89b4fa">
+          <font>
+            <Font name="System Bold" size="26"/>
+          </font>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="4">
+          <children>
+            <Label text="Target:" textFill="#a6adc8">
+              <font>
+                <Font size="11"/>
+              </font>
+            </Label>
+            <Label fx:id="targetTempLabel" text="- C" textFill="#a6adc8">
+              <font>
+                <Font size="11"/>
+              </font>
+            </Label>
+          </children>
+        </HBox>
+
+        <Label fx:id="deficitColdLabel"
+               text="Deficit: - C"
+               textFill="#f38ba8"
+               visible="false"
+               managed="false">
+          <font>
+            <Font size="12"/>
+          </font>
+        </Label>
+
+        <Label fx:id="deficitMildLabel"
+               text="Deficit: - C"
+               textFill="#f9e2af"
+               visible="false"
+               managed="false">
+          <font>
+            <Font size="12"/>
+          </font>
+        </Label>
+
+        <Label fx:id="deficitOkLabel" text="Deficit: - C" textFill="#a6e3a1">
+          <font>
+            <Font size="12"/>
+          </font>
+        </Label>
+      </children>
+    </VBox>
+
+    <VBox spacing="4">
+      <children>
+        <Label text="Buffer Tank" textFill="#a6adc8">
+          <font>
+            <Font size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="bufferTempLabel" text="- C" textFill="#cba6f7">
+          <font>
+            <Font name="System Bold" size="15"/>
+          </font>
+        </Label>
+
+        <StackPane prefHeight="8" style="-fx-background-color: #45475a; -fx-background-radius: 4;">
+          <children>
+            <Region fx:id="bufferFillBar"
+                    prefHeight="8"
+                    maxWidth="1.7976931348623157E308"
+                    StackPane.alignment="CENTER_LEFT"
+                    style="-fx-background-color: #cba6f7; -fx-background-radius: 4;"/>
+          </children>
+        </StackPane>
+      </children>
+    </VBox>
+
+    <Region prefHeight="1" style="-fx-background-color: #45475a;"/>
+
+    <VBox spacing="2">
+      <children>
+        <Label text="Last Command" textFill="#a6adc8">
+          <font>
+            <Font size="11"/>
+          </font>
+        </Label>
+
+        <Label fx:id="commandEmptyLabel" text="-" textFill="#cdd6f4">
+          <font>
+            <Font name="System Bold" size="13"/>
+          </font>
+        </Label>
+
+        <Label fx:id="commandStartLabel"
+               text="START HEATING"
+               textFill="#a6e3a1"
+               visible="false"
+               managed="false">
+          <font>
+            <Font name="System Bold" size="13"/>
+          </font>
+        </Label>
+
+        <Label fx:id="commandStopLabel"
+               text="STOP HEATING"
+               textFill="#f38ba8"
+               visible="false"
+               managed="false">
+          <font>
+            <Font name="System Bold" size="13"/>
+          </font>
+        </Label>
+
+        <Label fx:id="commandWaitLabel"
+               text="WAIT"
+               textFill="#f9e2af"
+               visible="false"
+               managed="false">
+          <font>
+            <Font name="System Bold" size="13"/>
+          </font>
+        </Label>
+
+        <Label fx:id="commandStoreLabel"
+               text="STORE HEAT IN BUFFER"
+               textFill="#cba6f7"
+               visible="false"
+               managed="false">
+          <font>
+            <Font name="System Bold" size="13"/>
+          </font>
+        </Label>
+      </children>
+    </VBox>
+  </children>
+</fx:root>

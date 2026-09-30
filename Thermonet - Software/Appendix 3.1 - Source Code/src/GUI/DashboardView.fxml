@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Orientation?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GUI.DashboardController"
+            style="-fx-background-color: #1e1e2e;">
+  <top>
+    <VBox spacing="10" style="-fx-background-color: #181825;">
+      <padding>
+        <Insets top="16" right="24" bottom="12" left="24"/>
+      </padding>
+      <children>
+        <Label text="Thermonet Central Server" textFill="#cdd6f4">
+          <font>
+            <Font name="System Bold" size="22"/>
+          </font>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+          <children>
+            <Button fx:id="startServerBtn"
+                    onAction="#startServer"
+                    text="Start Server"
+                    style="-fx-background-color: #a6e3a1; -fx-text-fill: #1e1e2e; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 6 14 6 14;"/>
+
+            <Label fx:id="serverStatusOfflineLabel" text="Offline" textFill="#f38ba8">
+              <font>
+                <Font name="System Bold" size="13"/>
+              </font>
+            </Label>
+
+            <Label fx:id="serverStatusOnlineLabel"
+                   text="Online"
+                   textFill="#a6e3a1"
+                   visible="false"
+                   managed="false">
+              <font>
+                <Font name="System Bold" size="13"/>
+              </font>
+            </Label>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Label text="Spawn client:" textFill="#a6adc8">
+              <font>
+                <Font size="13"/>
+              </font>
+            </Label>
+
+            <Button text="HP-01" onAction="#spawnHp01" style="-fx-background-color: #313244; -fx-text-fill: #cdd6f4; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 5 12 5 12;"/>
+            <Button text="HP-02" onAction="#spawnHp02" style="-fx-background-color: #313244; -fx-text-fill: #cdd6f4; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 5 12 5 12;"/>
+            <Button text="HP-03" onAction="#spawnHp03" style="-fx-background-color: #313244; -fx-text-fill: #cdd6f4; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 5 12 5 12;"/>
+            <Button text="HP-04" onAction="#spawnHp04" style="-fx-background-color: #313244; -fx-text-fill: #cdd6f4; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 5 12 5 12;"/>
+
+            <Region>
+              <HBox.hgrow>
+                <Priority fx:constant="ALWAYS"/>
+              </HBox.hgrow>
+            </Region>
+
+            <Label fx:id="connectedCountLabel" text="0 pumps connected" textFill="#a6adc8">
+              <font>
+                <Font size="13"/>
+              </font>
+            </Label>
+          </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+          <children>
+            <Label fx:id="priceHeading" text="Electricity price:" textFill="#a6adc8">
+              <font>
+                <Font size="13"/>
+              </font>
+            </Label>
+
+            <Label fx:id="priceLabel" text="-" textFill="#cdd6f4">
+              <font>
+                <Font name="System Bold" size="15"/>
+              </font>
+            </Label>
+
+            <Label fx:id="cheapPriceStatusLabel"
+                   text="CHEAP"
+                   visible="false"
+                   managed="false"
+                   style="-fx-background-color: #a6e3a1; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+              <padding>
+                <Insets top="2" right="8" bottom="2" left="8"/>
+              </padding>
+              <font>
+                <Font name="System Bold" size="12"/>
+              </font>
+            </Label>
+
+            <Label fx:id="mediumPriceStatusLabel"
+                   text="MEDIUM"
+                   visible="false"
+                   managed="false"
+                   style="-fx-background-color: #f9e2af; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+              <padding>
+                <Insets top="2" right="8" bottom="2" left="8"/>
+              </padding>
+              <font>
+                <Font name="System Bold" size="12"/>
+              </font>
+            </Label>
+
+            <Label fx:id="expensivePriceStatusLabel"
+                   text="EXPENSIVE"
+                   visible="false"
+                   managed="false"
+                   style="-fx-background-color: #f38ba8; -fx-text-fill: #1e1e2e; -fx-background-radius: 5;">
+              <padding>
+                <Insets top="2" right="8" bottom="2" left="8"/>
+              </padding>
+              <font>
+                <Font name="System Bold" size="12"/>
+              </font>
+            </Label>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </top>
+
+  <center>
+    <ScrollPane fitToWidth="true" style="-fx-background: #1e1e2e; -fx-background-color: #1e1e2e;">
+      <content>
+        <FlowPane fx:id="cardsPane"
+                  hgap="16"
+                  vgap="16"
+                  style="-fx-background-color: #1e1e2e;">
+          <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+          </padding>
+        </FlowPane>
+      </content>
+    </ScrollPane>
+  </center>
+
+  <bottom>
+    <VBox maxHeight="150" spacing="4" style="-fx-background-color: #181825;">
+      <padding>
+        <Insets top="8" right="24" bottom="14" left="24"/>
+      </padding>
+      <children>
+        <Label text="Event Log" textFill="#a6adc8">
+          <font>
+            <Font name="System Bold" size="11"/>
+          </font>
+        </Label>
+
+        <TextArea fx:id="logArea"
+                  editable="false"
+                  prefRowCount="4"
+                  style="-fx-control-inner-background: #11111b; -fx-text-fill: #a6adc8; -fx-font-family: monospace; -fx-font-size: 12;"/>
+      </children>
+    </VBox>
+  </bottom>
+</BorderPane>
